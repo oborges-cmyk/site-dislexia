@@ -1,5 +1,261 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+ /* ==========================================================================
+       VARIÁVEIS DE TEMA E CONFORTO VISUAL (BAIXO ESTRESSE / SEM OFUSCAMENTO)
+       ========================================================================== */
+       :root {
+        /* Tema padrão: Creme Suave */
+        --bg-main: #FAF7F0;
+        --bg-card: #F1EDE2;
+        --bg-card-hover: #EAE4D6;
+        --border-subtle: #DCD6C8;
+        --text-main: #23272A;
+        --text-muted: #3D4347;
+        --accent-primary: #1F5E73;
+        --accent-primary-soft: rgba(31, 94, 115, 0.12);
+        --accent-cta: #B85430;
+        --accent-cta-hover: #9E4525;
+        --accent-cta-text: #FAF7F0;
+        --ruler-bg: rgba(31, 94, 115, 0.11);
+        --ruler-border: rgba(31, 94, 115, 0.30);
+        --font-active: 'Lexend', Verdana, sans-serif;
+      }
+  
+      /* Tema opcional 2: Azul Pastel */
+      [data-theme="azul"] {
+        --bg-main: #EEF4F8;
+        --bg-card: #E2ECF2;
+        --bg-card-hover: #D6E4ED;
+        --border-subtle: #C6D7E3;
+        --text-main: #23272A;
+        --text-muted: #3A4248;
+        --ruler-bg: rgba(31, 94, 115, 0.12);
+        --ruler-border: rgba(31, 94, 115, 0.32);
+      }
+  
+      /* Tema opcional 3: Verde Sálvia */
+      [data-theme="verde"] {
+        --bg-main: #EFF5F0;
+        --bg-card: #E3EDE5;
+        --bg-card-hover: #D6E4D9;
+        --border-subtle: #C6D8CA;
+        --text-main: #23272A;
+        --text-muted: #3A433D;
+        --ruler-bg: rgba(31, 94, 115, 0.11);
+        --ruler-border: rgba(31, 94, 115, 0.30);
+      }
+  
+      /* Alternância de fonte amigável mantendo exatamente a mesma escala */
+      [data-font="atkinson"] {
+        --font-active: 'Atkinson Hyperlegible', Verdana, sans-serif;
+      }
+  
+      /* ==========================================================================
+         REGRAS OBRIGATÓRIAS DE TIPOGRAFIA E LEGIBILIDADE PARA DISLEXIA
+         ========================================================================== */
+      html {
+        font-size: 16px; /* Base fixa e confortável de 16px (1rem) */
+      }
+  
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        font-family: var(--font-active);
+        font-size: 1rem; /* 16px */
+        line-height: 1.7;
+        letter-spacing: 0.045em;
+        word-spacing: 0.12em;
+        transition: background-color 0.25s ease, color 0.25s ease;
+        overflow-x: hidden;
+      }
+  
+      /* Proibição absoluta de itálico, CAIXA ALTA e sublinhados decorativos */
+      *, *::before, *::after {
+        font-style: normal !important;
+        text-transform: none !important;
+        text-decoration: none !important;
+      }
+  
+      /* Alinhamento estrito à esquerda em todos os blocos de texto */
+      body, p, h1, h2, h3, h4, li, a, button, label, input, textarea, select, span, div {
+        text-align: left;
+      }
+  
+      /* Escala discreta e proporcional de títulos (sem letras grandes) */
+      h1 {
+        font-size: 1.5rem !important; /* Máximo 24px */
+        line-height: 1.45;
+        font-weight: 600;
+        max-width: 60ch;
+      }
+  
+      h2 {
+        font-size: 1.25rem !important; /* Máximo 20px */
+        line-height: 1.5;
+        font-weight: 600;
+        max-width: 60ch;
+      }
+  
+      h3 {
+        font-size: 1.125rem !important; /* Máximo 18px */
+        line-height: 1.5;
+        font-weight: 600;
+        max-width: 60ch;
+      }
+  
+      /* Limite de largura de leitura (60ch) e entrelinha de 1.7 em parágrafos e listas */
+      p, li {
+        font-size: 1rem; /* 16px */
+        line-height: 1.7;
+        max-width: 60ch;
+      }
+  
+      /* Destaques suaves com peso 600 (sem itálico ou sublinhado) */
+      strong, .destaque-palavra {
+        font-weight: 600;
+        color: var(--text-main);
+      }
+  
+      /* Superfícies temáticas */
+      .surface-main {
+        background-color: var(--bg-main);
+      }
+  
+      .surface-card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+      }
+  
+      .border-theme {
+        border-color: var(--border-subtle);
+      }
+  
+      .text-primary-accent {
+        color: var(--accent-primary);
+      }
+  
+      .text-muted-theme {
+        color: var(--text-muted);
+      }
+  
+      /* Botão principal em terracota suave */
+      .btn-cta {
+        background-color: var(--accent-cta);
+        color: var(--accent-cta-text);
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+      }
+  
+      .btn-cta:hover {
+        background-color: var(--accent-cta-hover);
+      }
+  
+      .btn-cta:active {
+        transform: translateY(1px);
+      }
+  
+      /* Botão secundário calmo */
+      .btn-secondary {
+        background-color: var(--bg-card);
+        color: var(--accent-primary);
+        border: 1px solid var(--accent-primary);
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5;
+        transition: background-color 0.2s ease;
+      }
+  
+      .btn-secondary:hover {
+        background-color: var(--accent-primary-soft);
+      }
+  
+      /* Links de navegação e texto sem sublinhado, com área de toque confortável */
+      .nav-link {
+        color: var(--text-main);
+        font-weight: 500;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+  
+      .nav-link:hover {
+        background-color: var(--accent-primary-soft);
+        color: var(--accent-primary);
+      }
+  
+      /* Foco visível de alto contraste para navegação por teclado */
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 3px;
+      }
+  
+      /* Estilo dos controles da Barra de Conforto de Leitura */
+      .comfort-chip {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        border: 1px solid var(--border-subtle);
+        font-size: 0.9375rem; /* 15px */
+        line-height: 1.4;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+      }
+  
+      .comfort-chip:hover {
+        background-color: var(--bg-card-hover);
+      }
+  
+      .comfort-chip[aria-checked="true"],
+      .comfort-chip[aria-pressed="true"] {
+        background-color: var(--accent-primary);
+        color: #FAF7F0;
+        border-color: var(--accent-primary);
+        font-weight: 600;
+      }
+  
+      /* ==========================================================================
+         RÉGUA DE LEITURA HORIZONTAL (GUIA VISUAL DE LINHA)
+         ========================================================================== */
+      #reading-ruler {
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 2.3rem; /* Acompanha confortavelmente uma linha de texto de 16px */
+        background-color: var(--ruler-bg);
+        border-top: 1px solid var(--ruler-border);
+        border-bottom: 1px solid var(--ruler-border);
+        pointer-events: none; /* Não bloqueia cliques nem seleção de texto */
+        z-index: 45;
+        transform: translateY(-50%);
+        top: 50%;
+        display: none;
+        transition: background-color 0.2s ease;
+      }
+  
+      #reading-ruler.active {
+        display: block;
+      }
+  
+      /* Marcador de lista personalizado e espaçado (evita aglomeração visual) */
+      .clean-bullet-list {
+        list-style: none;
+        padding-left: 0;
+      }
+  
+      .clean-bullet-list li {
+        position: relative;
+        padding-left: 1.35rem;
+      }
+  
+      .clean-bullet-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.68em;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 9999px;
+        background-color: var(--accent-primary);
+      }
